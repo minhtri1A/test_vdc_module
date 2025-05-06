@@ -1,0 +1,4 @@
+[submodule "vdc_vixtss_module"]
+	path = vdc_vixtss_module
+	url = https://github.com/minhtri1A/vdc_vixtss_module.git
+	branch = main
