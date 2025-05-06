@@ -3764,6 +3764,25 @@ files = [
 windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
+name = "pyngrok"
+version = "7.2.7"
+description = "A Python wrapper for ngrok"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "pyngrok-7.2.7-py3-none-any.whl", hash = "sha256:099168c1245d8d294fbf6e46c0874573e07b24b7395357302246a678eda305eb"},
+    {file = "pyngrok-7.2.7.tar.gz", hash = "sha256:a7f6ea247514084e9637fd40529addb918a17c1d81b8446ff2125d8cd2a49e19"},
+]
+
+[package.dependencies]
+PyYAML = ">=5.1"
+
+[package.extras]
+dev = ["coverage[toml]", "flake8", "flake8-pyproject", "pep8-naming", "psutil", "pytest"]
+docs = ["Sphinx (<8.2)", "mypy", "sphinx-notfound-page", "sphinx-substitution-extensions", "sphinx_autodoc_typehints (==1.25.2)", "types-PyYAML"]
+
+[[package]]
 name = "pynndescent"
 version = "0.5.13"
 description = "Nearest Neighbor Descent"
@@ -5493,7 +5512,7 @@ vinorm = ">=2.0.7,<3.0.0"
 type = "git"
 url = "https://github.com/minhtri1A/vdc_module.git"
 reference = "module"
-resolved_reference = "3d03f71d0b9b16ff7eef7d7a078eb500eab33afa"
+resolved_reference = "473c1e529ddb5e630d460dc58dd107188195e08a"
 
 [[package]]
 name = "vinorm"
@@ -5811,4 +5830,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.9,<3.12"
-content-hash = "a616d9946450eda37ffcb338638788da1a59a61a7d298c152adcfe76a39fd31a"
+content-hash = "4c46371df6feed71da9e654206581bdd8f525ac649d19640181ac29c69c1f243"
