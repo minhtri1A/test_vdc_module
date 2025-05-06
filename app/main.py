@@ -1,7 +1,7 @@
 import io
 import torch
 import soundfile as sf
-from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi import FastAPI, HTTPException, UploadFile, File, Request
 from fastapi.responses import StreamingResponse, JSONResponse
 from pydantic import BaseModel
 import torchaudio
@@ -12,6 +12,8 @@ from transformers import (
 from vdc_module.voice import generate_text_to_speech, generate_speech_to_text
 import tempfile
 import shutil
+from pyngrok import ngrok
+import time
 
 # --- Cấu hình và Tải Model (Nên thực hiện một lần khi ứng dụng khởi động) ---
 MODEL_ID = "facebook/mms-tts-vie"  # Model ID cho tiếng Việt
@@ -66,6 +68,15 @@ def load_model():
 
 # Gọi hàm load_model() khi ứng dụng khởi động
 load_model()
+
+
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    start_time = time.time()  # bắt đầu đo thời gian
+    response = await call_next(request)
+    process_time = time.time() - start_time  # tính thời gian xử lý
+    response.headers["X-Process-Time"] = str(process_time)  # thêm header
+    return response
 
 
 # --- API Endpoint để kiểm tra sức khỏe ---
@@ -167,6 +178,10 @@ async def getSTT(file: UploadFile = File(...)):
 
     return JSONResponse(content={"text": text})
 
+
+ngrok.set_auth_token("2whbuvHI5jH1j8avQ2PMHPwpdU3_3ofa364QXXiV4invKSoaq")
+public_url = ngrok.connect(8000)
+print("Public URL:", public_url)
 
 # --- Chạy ứng dụng (khi chạy file trực tiếp) ---
 if __name__ == "__main__":
