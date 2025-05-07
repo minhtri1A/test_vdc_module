@@ -9,6 +9,7 @@ from vdc_module.voice import (
     generate_text_to_speech,
     generate_speech_to_text,
     load_model_text_to_speech_vi,
+    load_model_speech_to_text,
 )
 import tempfile
 import shutil
@@ -24,6 +25,7 @@ app = FastAPI(
 
 # load model text_to_speech vdc_module
 load_model_text_to_speech_vi()
+load_model_speech_to_text()
 
 
 @app.middleware("http")
